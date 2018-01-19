@@ -18,7 +18,7 @@ node {
     
     stage "Push"
  
-        sh "docker login -u 'admin' -p 'admin'"
+        sh "docker login 'mycluster.icp:8500' -u 'admin' -p 'admin'"
         sh "docker push ${imageName}"
         sh "docker logout"
 
