@@ -8,8 +8,8 @@ node {
 
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appName = "hello-kenzan"
-    registryHost = "mycluster.icp:8500/"
-    imageName = "default/${registryHost}${appName}:${tag}"
+    registryHost = "mycluster.icp:8500"
+    imageName = "${registryHost}/default/${appName}:${tag}"
     env.BUILDIMG=imageName
 
     stage "Build"
