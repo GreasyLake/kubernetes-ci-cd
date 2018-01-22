@@ -7,7 +7,9 @@ podTemplate(label: 'pod-kubernetes-client',
             command: 'cat')
       ],
       volumes: [
-        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
+        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
+        hostPathVolume(hostPath: '/usr/bin/docker', mountPath: '/usr/bin/docker')
+
     ]
 ) {
     node ('pod-kubernetes-client') {
