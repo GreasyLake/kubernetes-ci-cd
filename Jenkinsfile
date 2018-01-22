@@ -4,7 +4,7 @@ PodTemplate(label: 'pod-kubernetes-client',
             name: 'kubernetes-client',
             image: 'chadmoon/jenkins-docker-kubectl:latest',
             ttyEnabled: true,
-            command: 'cat'
+            command: 'cat')
       ],
       volumes: [
         hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
