@@ -1,17 +1,4 @@
-PodTemplate(label: 'pod-kubernetes-client', 
-    containers: [
-        containerTemplate(
-            name: 'kubernetes-client',
-            image: 'chadmoon/jenkins-docker-kubectl:latest',
-            ttyEnabled: true,
-            command: 'cat'
-      volumes: [
-        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
-        hostPathVolume(hostPath: '/usr/bin/docker', mountPath: '/usr/bin/docker')
-      ]
-    ]
-) {
-    node ('pod-kubernetes-client') {
+node {
 
     checkout scm
 
@@ -39,5 +26,4 @@ PodTemplate(label: 'pod-kubernetes-client',
 
         sh "sed 's#mycluster.icp:8500/default/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-kenzan"
-    }
 }
