@@ -14,6 +14,7 @@ podTemplate(label: 'pod-kubernetes-client',
 ) {
     node ('pod-kubernetes-client') {
 
+    echo "PATH = ${env.PATH}"
     checkout scm
 
     env.DOCKER_API_VERSION="1.23"
