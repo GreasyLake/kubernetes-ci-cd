@@ -7,14 +7,17 @@ podTemplate(label: 'pod-kubernetes-client',
             command: 'cat')
       ],
       volumes: [
-        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
-        hostPathVolume(hostPath: '/usr/bin/docker', mountPath: '/usr/bin/docker')
-
+        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
     ]
 ) {
     node ('pod-kubernetes-client') {
 
+    container('kubernetes-client') {
     echo "PATH = ${env.PATH}"
+
+    def ret = sh(script: 'ls -l /usr/bin', returnStdout: true)
+    println ret
+
     checkout scm
 
     env.DOCKER_API_VERSION="1.23"
@@ -41,5 +44,6 @@ podTemplate(label: 'pod-kubernetes-client',
 
         sh "sed 's#mycluster.icp:8500/default/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
         sh "kubectl rollout status deployment/hello-kenzan"
+    }
     }
 }
