@@ -1,4 +1,4 @@
-PodTemplate(label: 'pod-kubernetes-client', 
+podTemplate(label: 'pod-kubernetes-client', 
     containers: [
         containerTemplate(
             name: 'kubernetes-client',
