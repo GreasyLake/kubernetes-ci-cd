@@ -5,10 +5,9 @@ PodTemplate(label: 'pod-kubernetes-client',
             image: 'chadmoon/jenkins-docker-kubectl:latest',
             ttyEnabled: true,
             command: 'cat'
+      ],
       volumes: [
-        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
-        hostPathVolume(hostPath: '/usr/bin/docker', mountPath: '/usr/bin/docker')
-      ]
+        hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
     ]
 ) {
     node ('pod-kubernetes-client') {
