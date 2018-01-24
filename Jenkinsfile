@@ -4,7 +4,7 @@ podTemplate(label: 'pod-kubernetes-client',
             name: 'kubernetes-client',
             image: 'alanhopkins/helm-kubectl-docker:latest',
             ttyEnabled: true,
-            command: 'cat')
+            command: 'cat'),
         containerTemplate(
             name: 'docker',
             image: 'docker:latest',
