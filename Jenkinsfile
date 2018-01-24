@@ -2,7 +2,7 @@ podTemplate(label: 'pod-kubernetes-client',
     containers: [
         containerTemplate(
             name: 'kubernetes-client',
-            image: 'mycluster.icp:8500/default/jenkins-docker-kubectl:1.00',
+            image: 'default/jenkins-docker-kubectl:1.00',
             ttyEnabled: true,
             command: 'cat')
       ],
