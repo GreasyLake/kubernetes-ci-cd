@@ -7,6 +7,7 @@ podTemplate(label: 'pod-kubernetes-client',
             command: 'cat'),
         containerTemplate(
             name: 'docker',
+            privileged: true,
             image: 'alanhopkins/docker-client:latest',
             ttyEnabled: true,
             command: 'cat')
@@ -20,6 +21,9 @@ podTemplate(label: 'pod-kubernetes-client',
 
           def ret = sh(script: 'ls -l /usr/bin', returnStdout: true)
           println ret
+
+          def id = sh(script: 'id', returnStdout: true)
+          println id
 
           checkout scm
 
@@ -37,6 +41,9 @@ podTemplate(label: 'pod-kubernetes-client',
        container('docker') {
           //stage "Build" {
     
+             def id = sh(script: 'id', returnStdout: true)
+             println id
+
              sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
           //}
           //stage "Push" {
