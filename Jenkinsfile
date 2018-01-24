@@ -35,23 +35,23 @@ podTemplate(label: 'pod-kubernetes-client',
           env.BUILDIMG=imageName
        }
        container('docker') {
-          stage "Build" {
+          //stage "Build" {
     
              sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
-          }
-          stage "Push" {
+          //}
+          //stage "Push" {
  
              sh "docker login 'mycluster.icp:8500' -u 'admin' -p 'admin'"
              sh "docker push ${imageName}"
              sh "docker logout"
-         }
+         //}
       }
       container('kubernetes-client') {
-         stage "Deploy" {
+         //stage "Deploy" {
 
              sh "sed 's#mycluster.icp:8500/default/hello-kenzan:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply -f -"
              sh "kubectl rollout status deployment/hello-kenzan"
-         }
+         //}
       }
    }
 }
