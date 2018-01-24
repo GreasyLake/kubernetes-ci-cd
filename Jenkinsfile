@@ -33,7 +33,7 @@ podTemplate(label: 'pod-kubernetes-client',
 
     stage "Build"
     
-        sh "/usr/bin/docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
+        sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
  
