@@ -11,7 +11,8 @@ podTemplate(label: 'pod-kubernetes-client',
             image: 'alanhopkins/docker-client:latest',
             ttyEnabled: true,
             command: 'cat')
-      ]
+      ],
+      volumes: [hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')]
 ) 
 {
     node ('pod-kubernetes-client') {
