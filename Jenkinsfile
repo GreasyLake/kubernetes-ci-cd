@@ -24,10 +24,11 @@ podTemplate(label: 'pod-kubernetes-client',
     
     sh "git rev-parse --short HEAD > commit-id"
 
-    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
+    // tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     appName = "hello-kenzan"
     registryHost = "mycluster.icp:8500"
-    imageName = "${registryHost}/default/${appName}:${tag}"
+    // imageName = "${registryHost}/default/${appName}:${tag}"
+    imageName = "${registryHost}/default/${appName}"
     env.BUILDIMG=imageName
 
     stage "Build"
