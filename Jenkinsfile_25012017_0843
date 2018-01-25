@@ -8,7 +8,7 @@ podTemplate(label: 'pod-kubernetes-client',
         containerTemplate(
             name: 'docker',
             privileged: true,
-            image: 'docker:1.11',
+            image: 'alanhopkins/docker-client:latest',
             ttyEnabled: true,
             command: 'cat')
       ],
